@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0a0a0a;
+            margin: 0;
+        }
+
+        #time {
+            font-size: 2rem;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <div id="time"></div>
+
+    <script>
+        function clock() {
+            const date = new Date();
+            let hour = date.getHours();
+            let meridiem = "AM";
+            
+            if (hour >= 12) {
+                meridiem = "PM";
+            }
+            
+            hour = (hour % 12) || 12; 
+            const min = date.getMinutes().toString().padStart(2, "0");
+            const sec = date.getSeconds().toString().padStart(2, "0");
+
+            document.getElementById("time").innerHTML = `${hour}:${min}:${sec} ${meridiem}`;
+
+            console.log(date, hour, min, sec);
+            
+            if (hour === 5 && min === '18' && meridiem === 'PM') {
+                clearInterval(intervalId);
+                alert("Mata na Huraw!");
+            }
+        }
+        
+        const intervalId = setInterval(clock, 1000);
+    </script>
+</body>
+</html>
