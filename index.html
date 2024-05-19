@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div id="question-container">
+        <p id="question-text"></p>
+        <input type="text" id="user-answer" placeholder="Your answer">
+        <button id="submit-btn">Submit</button>
+    </div>
+
+    <script>
+        const questions = [
+            { question: "What’s the national flower of Philippines?", answer: "Sampaguita" },
+            { question: "Who is the president of the Philippines?", answer: "Ferdinand Marcos Jr." },
+            { question: "Who is the leader of the KKK", answer: "Andres Bonifacio" },
+            { question: "Who invented telescope?", answer: "Hans Lippershey" },
+            { question: "Who is the first human lived in the world?", answer: "Homosapians" }
+        ];
+
+        let currentQuestion = 0;
+
+        function showQuestion() {
+            const questionText = document.getElementById("question-text");
+            questionText.textContent = questions[currentQuestion].question;
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById("user-answer").value.trim().toLowerCase();
+            const correctAnswer = questions[currentQuestion].answer.toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                    document.getElementById("user-answer").value = "";
+                    document.getElementById("user-answer").classList.remove("is-invalid");
+                    document.getElementById("user-answer").classList.add("is-valid");
+                } else {
+                    alert("Congratulations naa nakay 3.0!");
+                }
+            } else if (userAnswer === "") {
+                document.getElementById("user-answer").classList.add("is-invalid");
+                document.getElementById("user-answer").classList.remove("is-valid");
+            } else {
+                alert("Wrong!!");
+                currentQuestion = 0;
+                showQuestion();
+                document.getElementById("user-answer").value = "";
+                document.getElementById("user-answer").classList.add("is-invalid");
+                document.getElementById("user-answer").classList.remove("is-valid");
+            }
+        }
+
+        document.getElementById("submit-btn").addEventListener("click", checkAnswer);
+
+        showQuestion();
+    </script>
+</body>
+</html>
