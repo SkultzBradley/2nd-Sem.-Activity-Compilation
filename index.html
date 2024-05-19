@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #f9fff9a2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Interactive Quiz</h1>
+    <div class="question" id="question1">
+      <h2>Question 1: What is the venomous snake in the world?</h2>
+      <input type="text" id="answer1">
+      <button onclick="checkAnswer('blackmamba', 1)">Submit</button>
+    </div>
+    <div class="question" id="question2" style="display: none;">
+      <h2>Question 2: Does Mr.Beast faking his fans?</h2>
+      <input type="text" id="answer2">
+      <button onclick="checkAnswer('Yes', 2)">Submit</button>
+    </div>
+    <div class="question" id="question3" style="display: none;">
+        <h2>Question 3: What is the currency in philippines?</h2>
+        <input type="text" id="answer3">
+        <button onclick="checkAnswer('Peso', 3)">Submit</button>
+  </div>
+  <div class="question" id="question4" style="display: none;">
+    <h2>Question 4: What is the No.1 fastfood restaurant in philippines?</h2>
+    <input type="text" id="answer4">
+    <button onclick="checkAnswer('Jollibee', 4)">Submit</button>
+  </div>
+    <div class="question" id="question5" style="display: none;">
+        <h2>Question 5: How many letters in alphabet?</h2>
+        <input type="text" id="answer5">
+        <button onclick="checkAnswer('27', 5)">Submit</button>
+    </div>
+
+  <script>
+    function checkAnswer(correctAnswer, questionNumber) {
+      var userInput = document.getElementById('answer' + questionNumber).value.trim();
+      if (userInput.toLowerCase() === correctAnswer.toLowerCase()) {
+        alert('Correct! Nice Ka!');
+        document.getElementById('question' + questionNumber).style.display = 'none';
+        if (questionNumber < 3) {
+          document.getElementById('question' + (questionNumber + 1)).style.display = 'block';
+        } else {
+          alert('Congrats! You got a 3.0 grade!');
+        }
+      } else {
+        alert('Incorrect answer. Please try again.');
+        document.getElementById('answer' + questionNumber).value = '';
+      }
+    }
+  </script>
+</body>
+</html>
