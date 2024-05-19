@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting Lady's and Gentleman</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    input[type="text"] {
+        padding: 8px;
+        margin: 10px;
+        width: 200px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #224e50;
+        color: rgba(255, 255, 255, 0.342);
+        border: none;
+        cursor: pointer;
+    }
+    #welcomeMessage {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h2>Enter Your Name:</h2>
+    <input type="text" id="userName" placeholder="Enter your name">
+    <button onclick="displayWelcomeMessage()">Submit</button>
+    <div id="welcomeMessage"></div>
+
+    <script>
+        function displayWelcomeMessage() {
+            var userName = document.getElementById("userName").value;
+            var welcomeMessage = document.getElementById("welcomeMessage");
+            welcomeMessage.innerHTML = "Welcome! Mr./Ms. " + userName + ".";
+        }
+    </script>
+</body>
+</html>
